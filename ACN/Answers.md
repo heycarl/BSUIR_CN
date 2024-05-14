@@ -72,14 +72,14 @@
 
 Туннелирование – передача пакетов уровня Lx вкладывая их в пакеты того же уровня Lx.
 
-В Cisco поддерживаются следующие режимы туннелирования IPv6-over-IPv4
+В Cisco поддерживаются следующие основные режимы туннелирования IPv6-over-IPv4
 
 - ipv6ip – manual
 - ipv6ip 6to4 – 6to4
 - ipv6ip isatap – ISATAP
 - gre IPv6 – GRE(Generic Routing Encapsulation)
 
-В последних версиях Windows по умолчанию запрещен туннельный интерфейс 6to4, ISATAP (Intra-Site Automatic Tunnel Addressing Protocol) и Teredo. Их можно включить изменив соответствующие параметры в реестре. Настройка туннеля осуществляется через команду `netsh interface ipv6`.
+В последних версиях Windows по умолчанию запрещены все туннельные интерфейсы IPv6-over-IPv4 (6to4, ISATAP (Intra-Site Automatic Tunnel Addressing Protocol) и Teredo). Их можно разрешить, изменив соответствующие биты в значении ключа реестра. Настройка туннеля осуществляется через команду `netsh interface ipv6`.
 
 ### Варианты команды netsh interface ipv6:
 
@@ -89,7 +89,7 @@
 > netsh interface ipv6 set teredo type=disabled|client|enterpriseclient|server|default
 ```
 
-Для конфигурации туннеля в Linux нужно настроить его в файле находящемся `/etc/network/interfaces`
+Для конфигурации туннеля в Linux нужно настроить его в файле, находящемся по пути `/etc/network/interfaces`
 
 ### Настройка туннеля Linux
 
@@ -99,6 +99,8 @@ iface 6in4 inet6 v4tunnel
     address fd:0:0:10::1/64
     endpoint 192.168.1.1
 ```
+
+Также можно настроить туннель с помощью утилиты nmcli
 
 Конфигурация туннеля в IOS осуществляется после перехода в соответсвующий режим командой interface tunnel. После можно использовать команду tunnel.
 
