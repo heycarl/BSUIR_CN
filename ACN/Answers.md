@@ -94,10 +94,11 @@
 ### Настройка туннеля Linux
 
 ```
-auto 6to4
+auto 6in4
 iface 6in4 inet6 v4tunnel
-    address fd:0:0:10::1/64
-    endpoint 192.168.1.1
+    address fd:0:0:10::1 (IPv6 source)
+    netmask 64
+    endpoint 192.168.1.1 (IPv4 destination)
 ```
 
 Также можно настроить туннель с помощью утилиты nmcli
