@@ -66,7 +66,7 @@
 - IP SRC (IPv6 адрес устройства)
 - IP DST (IPv6 назначения)
 - ICMPv6 - RA
-- RA: CurHopLimit=64, Router Lifetime = 1800, Reachable Time = 0, Retrans Timer = 0; Flags = M=0, O=0; Options = Source Link-layer Address=MAC устройства; MTU = 1500, PrefixInfromation
+- RA: CurHopLimit=64, Router Lifetime = 1800, Reachable Time = 0, Retrans Timer = 0; Flags = M(managed)=0, O(other config)=0; Options = Source Link-layer Address=MAC устройства; MTU = 1500, PrefixInfromation
 
 # 70. Поддержка совместимости IPv6 с IPv4 в Windows, Linux и IOS
 
