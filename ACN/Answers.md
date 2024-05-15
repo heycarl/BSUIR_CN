@@ -32,41 +32,48 @@
 
 1. NS (Neighbor Solicitation)
 
-- MAC SRC (MAC устройства)
-- MAC DST (_33:33:00:00:00:00_ OR'd with Link-local All Nodes Multicast (FF02::1/128) - **_33:33:00:00:00:01_**)
-- IP SRC (IPv6 адрес устройства)
-- IP DST (Solicited-node multicast address + 24 крайних битов IPv6 устройства назначения)
-- ICMPv6 - NS
-- NS: Target Address - IPv6 устройства назначения; Option - Source Link-layer Address = MAC устройства
+- _SRC_MAC_: requester-mac
+- _DST_MAC_: 3333.0000.0000 + Solicited-node Multicast address of neighbor
+- _SRC_IP_: requester-ip
+- _DST_IP_: Solicited-node Multicast address of neighbor
+- _ICMPv6_: NS
+- _NS -> Target Adress_: neighbor-ip
+- _Options -> Source Link-layer address_: requester-ip
 
 2. NA (Neighbor Advertisement)
 
-- MAC SRC (MAC устройства)
-- MAC SRC (MAC назначения)
-- IP SRC (IPv6 адрес устройства)
-- IP DST (IPv6 назначения)
-- ICMPv6 - NA
-- NA: Target Address - IPv6 устройства назначения; Flags = R(router or not router)=0,S(is NS response)=1,O(override)=1; Option = Target Link-layer address = MAC устройства
+- _SRC_MAC_: neighbor-mac
+- _DST_MAC_: requester-mac
+- _SRC_IP_: neighbor-ip
+- _DST_IP_: requester-ip
+- _ICMPv6_: NA
+- _NA -> Target Adress_: requester-ip
+- _NA -> Flags_: R(router), S(NS response), O(override)
+- _Options -> Target Link-layer address_: requester-ip
 
 ### Алгоритм получения конфигурации от маршутизатора
 
 1. RS (Router Solicitation)
 
-- MAC SRC (MAC устройства)
-- MAC DST (_33:33:00:00:00:02_ OR'd with Link-local All Routers Multicast (FF02::2/128) - **_33:33:00:00:00:02_**)
-- IP SRC (IPv6 адрес устройства)
-- IP DST (Link-local All Routers Multicast)
-- ICMPv6 - RS
-- Option - Source Link-layer Address = MAC устройства
+- _SRC_MAC_: requester-mac
+- _DST_MAC_: 3333.0000.0000 + Link-local All-routers Multicast
+- _SRC_IP_: requester-ip
+- _DST_IP_: Link-local All-routers Multicast
+- _ICMPv6_: RS
+- _Options -> Source Link-layer address_: requester-ip
 
 2. RA (Router Advertisement)
 
-- MAC SRC (MAC устройства)
-- MAC SRC (MAC назначения)
-- IP SRC (IPv6 адрес устройства)
-- IP DST (IPv6 назначения)
-- ICMPv6 - RA
-- RA: CurHopLimit=64, Router Lifetime = 1800, Reachable Time = 0, Retrans Timer = 0; Flags = M(managed)=0, O(other config)=0; Options = Source Link-layer Address=MAC устройства; MTU = 1500, PrefixInfromation
+- _SRC_MAC_: router-mac
+- _DST_MAC_: requester-mac
+- _SRC_IP_: router-ip
+- _DST_IP_: requester-ip
+- _ICMPv6_: RA
+- _Options -> Source Link-layer address_: requester-ip
+- _RA_ -> CurHopLimit, Router Lifetime, Reachable Time, Retrans Timer
+- _RA -> Flags_: M(managed), O(other config)
+- _Options -> Source Link-layer Address_ : router-ip
+- _Options_: MTU, PrefixInfromation
 
 # 70. Поддержка совместимости IPv6 с IPv4 в Windows, Linux и IOS
 
