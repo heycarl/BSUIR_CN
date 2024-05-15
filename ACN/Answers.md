@@ -46,8 +46,7 @@
 - IP SRC (IPv6 адрес устройства)
 - IP DST (IPv6 назначения)
 - ICMPv6 - NA
-- NA: Target Address - IPv6 устройства назначения; Flags = R=0,S=1,O=1; Option = Target Link-layer address = MAC устройства
-R - роутером или не роутером, S - в ответ на NS, O - новый ли MAC-адрес
+- NA: Target Address - IPv6 устройства назначения; Flags = R(router or not router)=0,S(is NS response)=1,O(override)=1; Option = Target Link-layer address = MAC устройства
 
 ### Алгоритм получения конфигурации от маршутизатора
 
@@ -139,7 +138,7 @@ R1(config)# ipv6 route fd:0:0:1::/64 fd:0:0:10::1
 
 Тенденции в области безопасности сводятся к формированию Виртуальных частных сетей(VPN) охватывающие взаимодействующие станции. Взаимодействие происходит по Виртуальным частным каналом, которые представляют собой защищенный туннель, прокладываемый через открытые сети
 
-Также Cisco предлагает такую технологию как AAA(Authentication, Authorization, Accounting). 
+Также Cisco предлагает такую технологию как AAA(Authentication, Authorization, Accounting).
 
 При обеспечении безопасности исползуется две основные политики:
 
